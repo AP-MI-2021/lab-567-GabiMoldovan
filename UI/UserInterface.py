@@ -3,6 +3,10 @@ from functions.Logic import showBooks, UIadaugaCarte, deleteBookbyId, changeBook
 
 
 def printMenu():
+    '''
+    Afiseaza meniul de optiuni
+    :return: None
+    '''
     print("Optiunile sunt:")
     print("0. Afiseaza cartile din librarie")
     print("1. Adauga o carte in librarie")
@@ -16,11 +20,19 @@ def printMenu():
     print("9. Undo")
     print("x. Termina programul")
 
+
 def runMenu(lista):
+    '''
+    Functia care ruleaza meniul
+    :param lista: lista de carti
+    :return: None
+    '''
     while True:
         printMenu()
         option = input("Scrie numarul aferent unei optiuni: ")
+
         if option == "0":
+
             print("Cartile din librarie sunt:")
             showBooks(lista)
 
