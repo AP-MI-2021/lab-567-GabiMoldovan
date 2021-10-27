@@ -1,8 +1,11 @@
 from Tests.TestFunction import runTests
 from UI.CRUD.CRUD import adaugaCarte
 from UI.UserInterface import runMenu
+from book.Domain import getId, getTitle, getBookType, getPrice, getDiscountType
+
 
 def main():
+    '''
     lista = []
     lista = adaugaCarte("1", "Dumbrava minunata", "Basm", 15, "none", lista)
     lista = adaugaCarte("2", "Povestea lui Harap-Alb", "Basm", 1, "none", lista)
@@ -11,7 +14,29 @@ def main():
     lista = adaugaCarte("5", "Ion", "Roman", 13, "none", lista)
     lista = adaugaCarte("6", "Ultima noapte de dragoste, intaia noapte de razboi", "Roman", 18, "gold", lista)
     lista = adaugaCarte("7", "Plumb", "Poezii", 8, "gold", lista)
-    runTests()
+    '''
+    lista = [
+        ("1", "Dumbrava minunata", "Basm", 15, "none"),
+        ("2", "Povestea lui Harap-Alb", "Basm", 1, "none"),
+        ("3", "Moara cu noroc", "Nuvela", 20, "silver"),
+        ("4", "Mara", "Nuvela", 20, "silver"),
+        ("5", "Ion", "Roman", 13, "none"),
+        ("6", "Ultima noapte de dragoste, intaia noapte de razboi", "Roman", 18, "gold"),
+        ("7", "Plumb", "Poezii", 8, "gold")
+    ]
+
+    assert getId(lista[0]) == "1"
+    assert getTitle(lista[0]) == "Dumbrava minunata"
+    assert getBookType(lista[0]) == "Basm"
+    assert getPrice(lista[0]) == 15
+    assert getDiscountType(lista[0]) == "none"
+
+    assert getId(lista[1]) == "2"
+    assert getTitle(lista[1]) == "Povestea lui Harap-Alb"
+    assert getBookType(lista[1]) == "Basm"
+    assert getPrice(lista[1]) == 1
+    assert getDiscountType(lista[1]) == "none"
+
     runMenu(lista)
 
 main()

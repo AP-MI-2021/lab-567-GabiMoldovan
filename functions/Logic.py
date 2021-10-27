@@ -13,7 +13,7 @@ def showBooks(lista):
         print("Titlu: " + getTitle(book))
         print("Gen: " + getBookType(book))
         print("Pret: " + str(getPrice(book)))
-        print("Tip reducere: " + getDiscountType(book))
+        print("Tip reducere: " + str(getDiscountType(book)))
         print()
 
 
@@ -27,12 +27,14 @@ def UIadaugaCarte(lista):
     titlu = input("Dati titlu: ")
     gen = input("Dati genul: ")
     pret = input("Dati pretul: ")
+    # rezolvare ca pretul sa fie un numar natural
     tipReducere = input("Dati tipul reducerii (none/silver/gold): ")
     while checkifBookExists(id, lista) == True:
         id = input("Dati un id valid: ")
     while checkValidDiscountType(tipReducere) == False:
         tipReducere = input("Dati un tip de reducere valid (none/silver/gold):")
-    return createBook(id, titlu, gen, pret, tipReducere)
+    carte = {'id': id, 'titlu': titlu, 'genCarte': gen, 'pret': pret, 'tipReducere': tipReducere}
+    return carte
 
 
 def deleteBookbyId(lista):
@@ -63,8 +65,15 @@ def changeBookData(lista):
     ListaNoua = []
     for book in lista:
         if getId(book) == id:
-            newBook = UIadaugaCarte(ListaNoua)
-            ListaNoua.append(newBook)
+            idNou = input("Dati id: ")
+            titluNou = input("Dati titlu: ")
+            genNou = input("Dati genul: ")
+            pretNou = input("Dati pretul: ")
+            # rezolvare ca pretul sa fie un numar natural
+            tipReducereNou = input("Dati tipul reducerii (none/silver/gold): ")
+            while checkValidDiscountType(tipReducereNou) == False:
+                tipReducereNou = input("Dati un tip de reducere valid (none/silver/gold):")
+            ListaNoua.append((idNou, titluNou, genNou, pretNou, tipReducereNou))
         else:
             ListaNoua.append(book)
     return ListaNoua

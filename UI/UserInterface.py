@@ -1,3 +1,5 @@
+from UI.CRUD.CRUD import checkifBookExists, checkValidDiscountType
+from book.Domain import createBook
 from functions.Logic import showBooks, UIadaugaCarte, deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
     printMinPriceforAllTypes, sortByPrice, printDistinctTitlesbyType
 
@@ -37,7 +39,17 @@ def runMenu(lista):
             showBooks(lista)
 
         elif option == "1":
-            lista = lista + [UIadaugaCarte(lista)]
+            id = input("Dati id: ")
+            titlu = input("Dati titlu: ")
+            gen = input("Dati genul: ")
+            pret = input("Dati pretul: ")
+            # rezolvare ca pretul sa fie un numar natural
+            tipReducere = input("Dati tipul reducerii (none/silver/gold): ")
+            while checkifBookExists(id, lista) == True:
+                id = input("Dati un id valid: ")
+            while checkValidDiscountType(tipReducere) == False:
+                tipReducere = input("Dati un tip de reducere valid (none/silver/gold):")
+            lista.append( (id, titlu, gen, pret, tipReducere) )
             print("Cartea a fost adaugata cu succes!")
 
         elif option == "2":

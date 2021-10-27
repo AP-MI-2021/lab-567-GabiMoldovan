@@ -8,6 +8,8 @@ def createBook(id, titlu, genCarte, pret, tipReducere):
     :param tipReducere: tipul de reducere al cartii
     :return: cartea
     '''
+    carte = {'id': id, 'titlu': titlu, 'genCarte': genCarte, 'pret': pret, 'tipReducere': tipReducere }
+    '''
     return {
         "id": id,
         "titlu": titlu,
@@ -15,6 +17,7 @@ def createBook(id, titlu, genCarte, pret, tipReducere):
         "pret": pret,
         "tipReducere": tipReducere
     }
+    '''
 
 
 def getId(carte):
@@ -23,7 +26,7 @@ def getId(carte):
     :param carte: cartea
     :return: id-ul cartii
     '''
-    return carte["id"]
+    return carte[0]
 
 
 def getTitle(carte):
@@ -32,7 +35,7 @@ def getTitle(carte):
     :param carte: cartea
     :return: titlul cartii
     '''
-    return carte["titlu"]
+    return carte[1]
 
 
 def getBookType(carte):
@@ -41,7 +44,7 @@ def getBookType(carte):
     :param carte: cartea
     :return: genul cartii
     '''
-    return carte["genCarte"]
+    return carte[2]
 
 
 def getPrice(carte):
@@ -50,7 +53,7 @@ def getPrice(carte):
     :param carte: cartea
     :return: pretul cartii
     '''
-    return carte["pret"]
+    return carte[3]
 
 
 def getDiscountType(carte):
@@ -59,7 +62,7 @@ def getDiscountType(carte):
     :param carte: cartea
     :return: tipul de reducere al cartii
     '''
-    return carte["tipReducere"]
+    return carte[4]
 
 
 def toString(carte):
