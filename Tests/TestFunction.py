@@ -1,6 +1,7 @@
 from Tests.TestDomain import testCarte
 from Tests.testCRUD import testAdaugaCarte
 from Tests.testLogic import testAllLogicFunctions
+from UI.CRUD.CRUD import checkValidIdtoAdd, checkifBookExists, checkValidDiscountType
 from book.book import getId, getTitle, getBookType, getPrice, getDiscountType
 
 
@@ -17,3 +18,12 @@ def runTests(lista):
     assert getBookType(lista[1]) == "Basm"
     assert getPrice(lista[1]) == 1
     assert getDiscountType(lista[1]) == "none"
+
+    assert checkValidIdtoAdd("1", lista) == False
+    assert checkifBookExists("1", lista) == True
+    assert checkValidDiscountType(getBookType(lista[0])) == False
+
+    assert checkValidIdtoAdd("2", lista) == False
+    assert checkifBookExists("2", lista) == True
+    assert checkValidDiscountType(getBookType(lista[1])) == False
+
