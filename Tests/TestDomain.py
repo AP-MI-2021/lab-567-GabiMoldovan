@@ -1,4 +1,4 @@
-from book.Domain import createBook, getId, getTitle, getBookType, getPrice, getDiscountType
+from book.book import createBook, getId, getTitle, getBookType, getPrice, getDiscountType
 
 
 def testCarte():

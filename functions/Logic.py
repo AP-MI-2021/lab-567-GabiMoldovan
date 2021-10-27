@@ -1,5 +1,5 @@
 from UI.CRUD.CRUD import checkValidDiscountType, checkifBookExists
-from book.Domain import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
+from book.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 
 def showBooks(lista):
@@ -33,7 +33,7 @@ def UIadaugaCarte(lista):
         id = input("Dati un id valid: ")
     while checkValidDiscountType(tipReducere) == False:
         tipReducere = input("Dati un tip de reducere valid (none/silver/gold):")
-    carte = {'id': id, 'titlu': titlu, 'genCarte': gen, 'pret': pret, 'tipReducere': tipReducere}
+    carte = creteBook(id,titlu,gen,pret,tipReducere)
     return carte
 
 

@@ -1,5 +1,5 @@
 from UI.CRUD.CRUD import checkifBookExists, checkValidDiscountType
-from book.Domain import createBook
+from book.book import createBook
 from functions.Logic import showBooks, UIadaugaCarte, deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
     printMinPriceforAllTypes, sortByPrice, printDistinctTitlesbyType
 

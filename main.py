@@ -1,7 +1,7 @@
 from Tests.TestFunction import runTests
 from UI.CRUD.CRUD import adaugaCarte
 from UI.UserInterface import runMenu
-from book.Domain import getId, getTitle, getBookType, getPrice, getDiscountType
+from book.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 
 def main():
@@ -25,18 +25,8 @@ def main():
         ("7", "Plumb", "Poezii", 8, "gold")
     ]
 
-    assert getId(lista[0]) == "1"
-    assert getTitle(lista[0]) == "Dumbrava minunata"
-    assert getBookType(lista[0]) == "Basm"
-    assert getPrice(lista[0]) == 15
-    assert getDiscountType(lista[0]) == "none"
 
-    assert getId(lista[1]) == "2"
-    assert getTitle(lista[1]) == "Povestea lui Harap-Alb"
-    assert getBookType(lista[1]) == "Basm"
-    assert getPrice(lista[1]) == 1
-    assert getDiscountType(lista[1]) == "none"
-
+    runTests(lista)
     runMenu(lista)
 
 main()

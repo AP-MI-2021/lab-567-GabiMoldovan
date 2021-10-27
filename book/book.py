@@ -18,6 +18,7 @@ def createBook(id, titlu, genCarte, pret, tipReducere):
         "tipReducere": tipReducere
     }
     '''
+    return carte
 
 
 def getId(carte):

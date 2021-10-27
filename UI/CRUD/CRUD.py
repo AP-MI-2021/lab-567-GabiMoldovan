@@ -1,4 +1,4 @@
-from book.Domain import createBook, getId
+from book.book import createBook, getId
 
 
 def adaugaCarte(id, titlu, genCarte, pret, tipReducere, lista):
