@@ -33,7 +33,7 @@ def UIadaugaCarte(lista):
         id = input("Dati un id valid: ")
     while checkValidDiscountType(tipReducere) == False:
         tipReducere = input("Dati un tip de reducere valid (none/silver/gold):")
-    carte = creteBook(id,titlu,gen,pret,tipReducere)
+    carte = createBook(id,titlu,gen,pret,tipReducere)
     return carte
 
 

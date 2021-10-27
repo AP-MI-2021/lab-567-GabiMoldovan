@@ -8,7 +8,7 @@ def createBook(id, titlu, genCarte, pret, tipReducere):
     :param tipReducere: tipul de reducere al cartii
     :return: cartea
     '''
-    carte = {'id': id, 'titlu': titlu, 'genCarte': genCarte, 'pret': pret, 'tipReducere': tipReducere }
+    carte = (id, titlu, genCarte, pret, tipReducere)
     '''
     return {
         "id": id,
