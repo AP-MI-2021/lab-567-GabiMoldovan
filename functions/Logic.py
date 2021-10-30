@@ -1,5 +1,5 @@
 from UI.CRUD.CRUD import checkValidDiscountType, checkifBookExists
-from book.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
+from Domain.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 
 def showBooks(lista):
@@ -13,39 +13,23 @@ def showBooks(lista):
         print("Titlu: " + getTitle(book))
         print("Gen: " + getBookType(book))
         print("Pret: " + str(getPrice(book)))
-        print("Tip reducere: " + str(getDiscountType(book)))
+        print("Tip reducere: " + getDiscountType(book))
         print()
 
-
-def UIadaugaCarte(lista):
+def UIadaugaCarte(id, titlu, gen, pret, tipReducere):
     '''
     Creeaza o carte
-    :param lista: lista de carti existente
     :return: cartea creata
     '''
-    id = input("Dati id: ")
-    titlu = input("Dati titlu: ")
-    gen = input("Dati genul: ")
-    pret = input("Dati pretul: ")
-    # rezolvare ca pretul sa fie un numar natural
-    tipReducere = input("Dati tipul reducerii (none/silver/gold): ")
-    while checkifBookExists(id, lista) == True:
-        id = input("Dati un id valid: ")
-    while checkValidDiscountType(tipReducere) == False:
-        tipReducere = input("Dati un tip de reducere valid (none/silver/gold):")
-    carte = createBook(id,titlu,gen,pret,tipReducere)
-    return carte
+    return createBook(id, titlu, gen, pret, tipReducere)
 
 
-def deleteBookbyId(lista):
+def deleteBookbyId(lista, id):
     '''
     Sterge o carte dupa id
     :param lista: lista de carti
     :return: lista cu cartea stearsa
     '''
-    id = input("Dati id-ul cartii care doriti sa fie stearsa: ")
-    while checkifBookExists(id, lista) == False:
-        id = input("Dati un id valid: ")
     ListaNoua = []
     for book in lista:
         if getId(book) != id:
@@ -53,41 +37,32 @@ def deleteBookbyId(lista):
     return ListaNoua
 
 
-def changeBookData(lista):
+def changeBookData(lista, id, titlu, gen, pret, tipReducere):
     '''
-    Schimba datele unei carti dupa id
-    :param lista: lista de carti
-    :return: lista cu datele cartii schimbate
+    :param lista:
+    :param id:
+    :param titlu:
+    :param gen:
+    :param pret:
+    :param tipReducere:
+    :return:
     '''
-    id = input("Dati id-ul cartii pentru care doriti sa modificati datele: ")
-    while checkifBookExists(id, lista) == False:
-        id = input("Dati un id valid: ")
     ListaNoua = []
     for book in lista:
         if getId(book) == id:
-            idNou = input("Dati id: ")
-            titluNou = input("Dati titlu: ")
-            genNou = input("Dati genul: ")
-            pretNou = input("Dati pretul: ")
-            # rezolvare ca pretul sa fie un numar natural
-            tipReducereNou = input("Dati tipul reducerii (none/silver/gold): ")
-            while checkValidDiscountType(tipReducereNou) == False:
-                tipReducereNou = input("Dati un tip de reducere valid (none/silver/gold):")
-            ListaNoua.append((idNou, titluNou, genNou, pretNou, tipReducereNou))
+            newBook = UIadaugaCarte(id, titlu, gen, pret, tipReducere)
+            ListaNoua.append(newBook)
         else:
             ListaNoua.append(book)
     return ListaNoua
 
 
-def applyDiscounts(lista):
+def applyDiscounts(lista, discountType):
     '''
     Aplica reducerile de tip silver/gold
     :param lista: lista de carti
     :return: lista dupa aplicarea reducerilor
     '''
-    discountType = input("Dati tipul de reducere(silver/gold/ambele): ")
-    while discountType != "silver" and discountType != "gold" and discountType != "ambele":
-        discountType = input("Dati un tip valid de reducere(silver/gold/ambele): ")
     ListaNoua = []
     for book in lista:
         if getDiscountType(book) == "silver" and ( discountType == "silver" or discountType == "ambele" ):
@@ -118,17 +93,13 @@ def checkIfTitleExists(lista, title):
     return False
 
 
-def modifyTypeByTitle(lista):
+def modifyTypeByTitle(lista, title, newType):
     '''
     Modifica genul unei carti dupa un titlu dat
     :param lista: lista de carti
     :return: lista cu aplicarea modificarii genului asupra cartii cu titlul dat
     '''
     ListaNoua = []
-    title = input("Dati titlul: ")
-    while checkIfTitleExists(lista, title) == False:
-        title = input("Dati un titlu care se afla in librarie: ")
-    newType = input("Dati genul: ")
     for book in lista:
         if getTitle(book) == title:
             newBook = createBook(getId(book), getTitle(book), newType, getPrice(book), getDiscountType(book))
@@ -176,37 +147,17 @@ def getMinPriceofType(lista, gen):
         if getBookType(book) == gen:
             if price == None:
                 price = getPrice(book)
-            elif getPrice(book) < price:
+            elif getPrice(book) < int(price):
                 price = getPrice(book)
     return price
 
 
-def printMinPricebyType(lista, gen):
-    '''
-    Determina daca cartile dintr-un gen au pretul minim, si afiseaza cartile din acel gen
-    :param lista: lista de carti
-    :param gen: genul pentru care se determina cartile cu pretul minim
-    :return: None
-    '''
-    price = getMinPriceofType(lista, gen)
+def getTitlesWithMinPriceOfType(gen, pretGen, lista):
+    listaTitluriPretMinimPtGen = []
     for book in lista:
-        if getBookType(book) == gen and getPrice(book) == price:
-            print("\"" + getTitle(book) + "\"", end = ", ")
-    print("cu pretul " + str(price))
-
-
-def printMinPriceforAllTypes(lista):
-    '''
-    Afiseaza cartea/cartile cu pretul minim pentru fiecare gen
-    :param lista: lista de carti
-    :return: None
-    '''
-    listaGenuri = []
-    listaGenuri = getAllTypes(lista)
-    for genulCartii in listaGenuri:
-        print("Cartea/Cartile cu pretul minim care au genul " + genulCartii + " este/sunt:", end = " ")
-        printMinPricebyType(lista, genulCartii)
-
+        if getBookType(book) == gen and getPrice(book) == pretGen:
+            listaTitluriPretMinimPtGen.append(getTitle(book))
+    return listaTitluriPretMinimPtGen
 
 def isInPriceList(lista, pret):
     '''
@@ -251,7 +202,7 @@ def sortByPrice(lista):
     return ListaNoua
 
 
-def notCounted(titluriGen, titluCarte):
+def countedTitle(titluriGen, titluCarte):
     '''
     Verifica daca titluCarte se afla in lista titluriGen
     :param titluriGen: o lista in care apare fiecare titlu al unui gen
@@ -264,19 +215,16 @@ def notCounted(titluriGen, titluCarte):
     return False
 
 
-def printDistinctTitlesbyType(lista):
+def getDistinctTitlesbyType(lista, gen):
     '''
     Determina numarul de titluri distincte din fiecare gen
     :param lista: lista de carti
     :return: None
     '''
-    listaGenuri = []
-    listaGenuri = getAllTypes(lista)
-    for gen in listaGenuri:
-        titluriGen = []
-        numar = int(0)
-        for book in lista:
-            if getBookType(book) == gen and notCounted(titluriGen, getTitle(book)) == False:
-                numar = numar + int(1)
-                titluriGen.append(getTitle(book))
-        print("Numarul de titluri distincte din genul " + gen + " este: " + str(numar))
+    titluriGen = []
+    numar = int(0)
+    for book in lista:
+        if getBookType(book) == gen and countedTitle(titluriGen, getTitle(book)) == False:
+            numar = numar + int(1)
+            titluriGen.append(getTitle(book))
+    return titluriGen

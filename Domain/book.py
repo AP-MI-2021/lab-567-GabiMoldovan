@@ -8,17 +8,7 @@ def createBook(id, titlu, genCarte, pret, tipReducere):
     :param tipReducere: tipul de reducere al cartii
     :return: cartea
     '''
-    carte = (id, titlu, genCarte, pret, tipReducere)
-    '''
-    return {
-        "id": id,
-        "titlu": titlu,
-        "genCarte": genCarte,
-        "pret": pret,
-        "tipReducere": tipReducere
-    }
-    '''
-    return carte
+    return (id, titlu, genCarte, pret, tipReducere )
 
 
 def getId(carte):
@@ -68,9 +58,9 @@ def getDiscountType(carte):
 
 def toString(carte):
     '''
-    Afiseaza cartea cu parametrii convertiti la string
+    Returneaza cartea intr-un anumit format
     :param carte: cartea
-    :return: cartea cu parametrii convertiti la string
+    :return: cartea intr-un anumit format
     '''
     return "Id: {}, Titlu: {}, Gen carte: {}, Pret: {}, Tip reducere: {}".format(
         getId(carte),
