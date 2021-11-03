@@ -61,6 +61,11 @@ def runMenu(lista):
             showBooks(lista)
 
         elif option == "1":
+            id = input("Dati id: ")
+            titlu = input("Dati titlu: ")
+            gen = input("Dati gen: ")
+            pret = input("Dati pret: ")
+            tipReducere = input("Dati tip reducere: ")
             lista = lista + [UIadaugaCarte(id, titlu, gen, pret, tipReducere)]
             print("Cartea a fost adaugata cu succes!")
 
