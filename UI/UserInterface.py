@@ -1,8 +1,30 @@
+from Domain.book import createBook, getId, getTitle, getBookType, getPrice, getDiscountType
 from UI.CRUD.CRUD import checkifBookExists, checkValidDiscountType
-from functions.Logic import showBooks, UIadaugaCarte, deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
+from functions.Logic import  deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
     sortByPrice, getAllTypes, getMinPriceofType, getTitlesWithMinPriceOfType, checkIfTitleExists, \
     getDistinctTitlesbyType
 
+
+def showBooks(lista):
+    '''
+    Afiseaza toate cartile din lista
+    :param lista: lista de carti
+    :return: None
+    '''
+    for book in lista:
+        print("Id: " + getId(book))
+        print("Titlu: " + getTitle(book))
+        print("Gen: " + getBookType(book))
+        print("Pret: " + str(getPrice(book)))
+        print("Tip reducere: " + getDiscountType(book))
+        print()
+
+def UIadaugaCarte(id, titlu, gen, pret, tipReducere):
+    '''
+    Creeaza o carte
+    :return: cartea creata
+    '''
+    return createBook(id, titlu, gen, pret, tipReducere)
 
 def printMenu():
     '''

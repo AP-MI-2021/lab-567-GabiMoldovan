@@ -2,28 +2,6 @@ from UI.CRUD.CRUD import checkValidDiscountType, checkifBookExists
 from Domain.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 
-def showBooks(lista):
-    '''
-    Afiseaza toate cartile din lista
-    :param lista: lista de carti
-    :return: None
-    '''
-    for book in lista:
-        print("Id: " + getId(book))
-        print("Titlu: " + getTitle(book))
-        print("Gen: " + getBookType(book))
-        print("Pret: " + str(getPrice(book)))
-        print("Tip reducere: " + getDiscountType(book))
-        print()
-
-def UIadaugaCarte(id, titlu, gen, pret, tipReducere):
-    '''
-    Creeaza o carte
-    :return: cartea creata
-    '''
-    return createBook(id, titlu, gen, pret, tipReducere)
-
-
 def deleteBookbyId(lista, id):
     '''
     Sterge o carte dupa id
@@ -50,7 +28,7 @@ def changeBookData(lista, id, titlu, gen, pret, tipReducere):
     ListaNoua = []
     for book in lista:
         if getId(book) == id:
-            newBook = UIadaugaCarte(id, titlu, gen, pret, tipReducere)
+            newBook = createBook(id, titlu, gen, pret, tipReducere)
             ListaNoua.append(newBook)
         else:
             ListaNoua.append(book)

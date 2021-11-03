@@ -1,6 +1,7 @@
 from UI.CRUD.CRUD import adaugaCarte
+from UI.UserInterface import UIadaugaCarte
 from functions.Logic import checkIfTitleExists, isInTypeList, getAllTypes, getMinPriceofType, isInPriceList, \
-    getAllPrices, countedTitle, UIadaugaCarte, deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
+    getAllPrices, countedTitle, deleteBookbyId, changeBookData, applyDiscounts, modifyTypeByTitle, \
     getTitlesWithMinPriceOfType, sortByPrice, getDistinctTitlesbyType
 
 

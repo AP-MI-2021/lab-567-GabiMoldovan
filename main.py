@@ -1,8 +1,15 @@
 from Tests.CallTests import runTests
 from UI.CRUD.CRUD import adaugaCarte
 from UI.UserInterface import runMenu
+from newUI.UserInterfaceNew import newMenu
+
 
 def main():
+
+    # exceptii pt parametrii cartii
+    # o noua interfata
+    # introducere date: cerem utilizatorului string-uri
+    # help, add, showall, delete
 
     '''
 
@@ -28,7 +35,8 @@ def main():
     ]
 
     runTests()
-    runMenu(lista)
+    #runMenu(lista)
+    newMenu(lista)
 
 if __name__ == '__main__':
     main()
