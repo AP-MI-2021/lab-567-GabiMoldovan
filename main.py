@@ -1,5 +1,4 @@
 from Tests.CallTests import runTests
-from UI.CRUD.CRUD import adaugaCarte
 from UI.UserInterface import runMenu
 from newUI.UserInterfaceNew import newMenu
 
@@ -35,8 +34,8 @@ def main():
     ]
 
     runTests()
-    #runMenu(lista)
-    newMenu(lista)
+    runMenu(lista)
+    #newMenu(lista)
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,4 @@
-from UI.CRUD.CRUD import checkValidIdtoAdd, checkifBookExists, checkValidDiscountType, adaugaCarte
+from CRUD.CRUD import adaugaCarte, checkValidIdtoAdd, checkifBookExists, checkValidDiscountType
 from Domain.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 

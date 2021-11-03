@@ -1,4 +1,3 @@
-from UI.CRUD.CRUD import checkValidDiscountType, checkifBookExists
 from Domain.book import getId, getTitle, getBookType, getPrice, getDiscountType, createBook
 
 

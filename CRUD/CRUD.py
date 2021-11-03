@@ -12,6 +12,12 @@ def adaugaCarte(id, titlu, genCarte, pret, tipReducere, lista):
     :param lista: lista de carti existente
     :return: lista cu cartea adaugata in ea
     '''
+    while checkValidIdtoAdd(id) == False:
+        id = input("Exista deja o carte cu acest ID! dati altul: ")
+    while checkValidPrice(pret) == False:
+        pret = input("Dati un pret care sa fie mai mare ca 0: ")
+    while checkValidDiscountType(tipReducere) == False:
+        tipReducere = input("Dati un tip de reducere valid(none/silver/gold): ")
     carte = createBook(id, titlu, genCarte, pret, tipReducere)
     return lista + [carte]
 
@@ -51,3 +57,8 @@ def checkValidDiscountType(tipReducere):
     if tipReducere != "none" and tipReducere != "silver" and tipReducere != "gold":
         return False
     return True
+
+def checkVadliPrice(price):
+    if int(price) > int(0):
+        return True
+    return False
