@@ -42,12 +42,12 @@ def applyDiscounts(lista, discountType):
     '''
     ListaNoua = []
     for book in lista:
-        if getDiscountType(book) == "silver" and ( discountType == "silver" or discountType == "ambele" ):
+        if getDiscountType(book) == "silver" and (discountType == "silver" or discountType == "ambele"):
             reducere = float(getPrice(book) / 20)
             reducere = float(getPrice(book) - reducere)
             newBook = createBook(getId(book), getTitle(book), getBookType(book), reducere, "silver")
             ListaNoua.append(newBook)
-        elif getDiscountType(book) == "gold" and ( discountType == "gold" or discountType == "ambele" ):
+        elif getDiscountType(book) == "gold" and (discountType == "gold" or discountType == "ambele"):
             reducere = float(getPrice(book) / 10)
             reducere = float(getPrice(book) - reducere)
             newBook = createBook(getId(book), getTitle(book), getBookType(book), reducere, "gold")
@@ -107,7 +107,7 @@ def getAllTypes(lista):
     '''
     ListaGenuri = []
     for book in lista:
-        if isInTypeList(ListaGenuri, getBookType(book)) == False:
+        if isInTypeList(ListaGenuri, getBookType(book)) is False:
             ListaGenuri.append(getBookType(book))
     return ListaGenuri
 
@@ -122,7 +122,7 @@ def getMinPriceofType(lista, gen):
     price = None
     for book in lista:
         if getBookType(book) == gen:
-            if price == None:
+            if price is None:
                 price = getPrice(book)
             elif getPrice(book) < int(price):
                 price = getPrice(book)
@@ -135,6 +135,7 @@ def getTitlesWithMinPriceOfType(gen, pretGen, lista):
         if getBookType(book) == gen and getPrice(book) == pretGen:
             listaTitluriPretMinimPtGen.append(getTitle(book))
     return listaTitluriPretMinimPtGen
+
 
 def isInPriceList(lista, pret):
     '''
@@ -157,7 +158,7 @@ def getAllPrices(lista):
     '''
     prices = []
     for book in lista:
-        if isInPriceList(prices, getPrice(book)) == False:
+        if isInPriceList(prices, getPrice(book)) is False:
             prices.append(getPrice(book))
     return prices
 
@@ -201,7 +202,7 @@ def getDistinctTitlesbyType(lista, gen):
     titluriGen = []
     numar = int(0)
     for book in lista:
-        if getBookType(book) == gen and countedTitle(titluriGen, getTitle(book)) == False:
+        if getBookType(book) == gen and countedTitle(titluriGen, getTitle(book)) is False:
             numar = numar + int(1)
             titluriGen.append(getTitle(book))
     return titluriGen
