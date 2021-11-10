@@ -16,13 +16,13 @@ def deleteBookbyId(lista, id):
 
 def changeBookData(lista, id, titlu, gen, pret, tipReducere):
     '''
-    :param lista:
-    :param id:
-    :param titlu:
-    :param gen:
-    :param pret:
-    :param tipReducere:
-    :return:
+    :param lista: lista de carti
+    :param id: id-ul cartii care va fi schimbata
+    :param titlu: titlul cattii care va fi schimbata
+    :param gen: genul cartii care va fi scihmbata
+    :param pret: pretul cartii care va fi schimbata
+    :param tipReducere: tipul de reducere al cartii care va fi schimbata
+    :return: lista cu cartea data de id dupa modificarea acesteia
     '''
     ListaNoua = []
     for book in lista:
@@ -130,6 +130,13 @@ def getMinPriceofType(lista, gen):
 
 
 def getTitlesWithMinPriceOfType(gen, pretGen, lista):
+    '''
+    Creeaza o lista cu titlurile care au pretul pretGen dintr-un gen
+    :param gen: genul cartii pentru care se creeaza lista
+    :param pretGen: pretul unei carti din genul gen ( folosit in problema ca pretul minim )
+    :param lista: lista de carti
+    :return: o lista cu titlurile care au pretul pretGen din genul gen
+    '''
     listaTitluriPretMinimPtGen = []
     for book in lista:
         if getBookType(book) == gen and getPrice(book) == pretGen:
