@@ -195,7 +195,7 @@ def runMenu(lista):
 
         elif option == "x":
             break
-
+        
         else:
             print("Ati ales o optiune gresita!")
         print()
